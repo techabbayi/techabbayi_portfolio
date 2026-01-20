@@ -102,9 +102,9 @@ export default function AboutDesigner() {
                             Craft
                         </h3>
                         <div className="flex flex-wrap gap-x-8 gap-y-4">
-                            {Object.values(designSkills).flat().slice(0, 8).map((skill, i) => (
+                            {Object.values(designSkills).flat().slice(0, 8).map((skill: { name: string; description: string }, i) => (
                                 <span key={i} className="text-[var(--text-secondary)] text-lg border-b border-[var(--border-primary)] pb-1">
-                                    {skill}
+                                    {skill.name}
                                 </span>
                             ))}
                         </div>
