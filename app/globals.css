@@ -5,6 +5,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 
 @import "tailwindcss";
 
@@ -50,37 +52,73 @@
      CSS VARIABLES - DESIGNER THEME (DO NOT MODIFY HACKER THEME)
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   .theme-designer {
-    /* Backgrounds - Warm, editorial */
-    --bg-primary: #fafaf9;
-    --bg-secondary: #f5f5f4;
-    --bg-tertiary: #e7e5e4;
+    /* Backgrounds - Warm cream palette */
+    --bg-primary: #ffeccc;
+    --bg-secondary: #fff5e6;
+    --bg-tertiary: #ffeedd;
     --bg-elevated: #ffffff;
+    --bg-glass: rgba(255, 236, 204, 0.9);
 
-    /* Accents - Muted, sophisticated */
-    --accent-primary: #1c1917;
-    --accent-secondary: #78716c;
-    --accent-tertiary: #a8a29e;
+    /* Gradients - Warm, sophisticated */
+    --gradient-primary: linear-gradient(135deg, #5e1010 0%, #8b2020 100%);
+    --gradient-secondary: linear-gradient(135deg, #5e1010 0%, #a04040 100%);
+    --gradient-accent: linear-gradient(135deg, #8b2020 0%, #5e1010 100%);
+    --gradient-warm: linear-gradient(135deg, #5e1010 0%, #d4a574 100%);
+    --gradient-cool: linear-gradient(135deg, #5e1010 0%, #3d0a0a 100%);
+    --gradient-purple: linear-gradient(135deg, #8b2020 0%, #ffeccc 100%);
 
-    /* Text - Deep, readable */
-    --text-primary: #1c1917;
-    --text-secondary: #57534e;
-    --text-tertiary: #78716c;
-    --text-muted: #a8a29e;
+    /* Accents - Deep burgundy tones */
+    --accent-primary: #5e1010;
+    --accent-secondary: #8b2020;
+    --accent-tertiary: #a04040;
+    --accent-warm: #d4a574;
+    --accent-cool: #3d0a0a;
 
-    /* Borders - Subtle */
-    --border-primary: #e7e5e4;
-    --border-secondary: #f5f5f4;
-    --border-accent: #d6d3d1;
+    /* Text - High contrast on cream */
+    --text-primary: #2d0808;
+    --text-secondary: #5e1010;
+    --text-tertiary: #8b2020;
+    --text-muted: #a67c52;
 
-    /* Fonts - Editorial */
+    /* Borders - Warm, subtle */
+    --border-primary: #f5d9b3;
+    --border-secondary: #ffe4c4;
+    --border-accent: rgba(94, 16, 16, 0.2);
+    --border-glow: rgba(94, 16, 16, 0.4);
+
+    /* Fonts - Modern, clean */
     --font-serif: 'Playfair Display', Georgia, serif;
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 
-    /* Shadows - Soft, natural */
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.06);
+    /* Shadows - Warm, soft */
+    --shadow-sm: 0 1px 3px rgba(94, 16, 16, 0.08), 0 1px 2px rgba(94, 16, 16, 0.05);
+    --shadow-md: 0 4px 6px rgba(94, 16, 16, 0.1), 0 2px 4px rgba(94, 16, 16, 0.06);
+    --shadow-lg: 0 10px 15px rgba(94, 16, 16, 0.12), 0 4px 6px rgba(94, 16, 16, 0.08);
+    --shadow-xl: 0 20px 25px rgba(94, 16, 16, 0.15), 0 10px 10px rgba(94, 16, 16, 0.1);
+    --shadow-glow: 0 0 20px rgba(94, 16, 16, 0.2);
+    --shadow-glow-strong: 0 0 40px rgba(102, 126, 234, 0.25);
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     CSS VARIABLES - TEST-3D THEME (HYPER-MODERN FROST)
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .theme-test-3d {
+    --bg-primary: #fcfdff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+    --bg-elevated: #ffffff;
+
+    --accent-primary: #6366f1;
+    --accent-secondary: #0ea5e9;
+    --accent-glow: rgba(99, 102, 241, 0.2);
+
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-tertiary: #64748b;
+
+    --border-primary: #e2e8f0;
+    --border-accent: rgba(99, 102, 241, 0.3);
   }
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -283,6 +321,21 @@
         rgba(0, 255, 0, 0.02),
         rgba(0, 0, 255, 0.06));
     background-size: 100% 2px, 3px 100%;
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     3D UTILITIES
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
   }
 
   /* Reduced motion support */

@@ -1,0 +1,100 @@
+/* Additional Designer Theme Color Overrides */
+.theme-designer {
+    background-color: #ffeccc !important;
+}
+
+.theme-designer section {
+    background-color: #ffeccc;
+}
+
+.theme-designer .bg-white {
+    background-color: #ffffff !important;
+}
+
+.theme-designer .bg-gray-50 {
+    background-color: #fff5e6 !important;
+}
+
+.theme-designer .bg-gray-100 {
+    background-color: #ffeedd !important;
+}
+
+.theme-designer .bg-gray-900 {
+    background-color: #5e1010 !important;
+}
+
+.theme-designer .text-gray-900 {
+    color: #2d0808 !important;
+}
+
+.theme-designer .text-gray-500 {
+    color: #8b2020 !important;
+}
+
+.theme-designer .text-gray-400 {
+    color: #a67c52 !important;
+}
+
+.theme-designer .text-gray-300 {
+    color: #d4a574 !important;
+}
+
+.theme-designer .text-blue-600 {
+    color: #5e1010 !important;
+}
+
+.theme-designer .text-purple-600 {
+    color: #8b2020 !important;
+}
+
+.theme-designer .border-gray-100 {
+    border-color: #f5d9b3 !important;
+}
+
+.theme-designer .border-gray-200 {
+    border-color: #ffe4c4 !important;
+}
+
+.theme-designer .border-blue-600 {
+    border-color: #5e1010 !important;
+}
+
+.theme-designer .bg-blue-600 {
+    background-color: #5e1010 !important;
+}
+
+.theme-designer .bg-blue-50 {
+    background-color: #fff5e6 !important;
+}
+
+.theme-designer .bg-purple-50 {
+    background-color: #ffeedd !important;
+}
+
+.theme-designer .hover\:bg-blue-600:hover {
+    background-color: #8b2020 !important;
+}
+
+.theme-designer .hover\:text-blue-600:hover {
+    color: #5e1010 !important;
+}
+
+.theme-designer .hover\:border-blue-600:hover {
+    border-color: #5e1010 !important;
+}
+
+.theme-designer .from-blue-600 {
+    --tw-gradient-from: #5e1010 !important;
+}
+
+.theme-designer .to-blue-600 {
+    --tw-gradient-to: #5e1010 !important;
+}
+
+.theme-designer .from-purple-600 {
+    --tw-gradient-from: #8b2020 !important;
+}
+
+.theme-designer .to-purple-600 {
+    --tw-gradient-to: #8b2020 !important;
+}

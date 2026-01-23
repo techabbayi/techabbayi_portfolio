@@ -214,6 +214,8 @@ export const writings = [
         id: 1,
         title: "Why Privacy Matters in the Digital Age",
         excerpt: "In a world where data is currency, protecting our privacy isn't just about security—it's about preserving our fundamental rights and freedoms.",
+        category: "Privacy",
+        tags: ["DigitalRights", "Security", "Freedom"],
         date: "January 2024",
         readTime: "5 min read",
     },
@@ -221,6 +223,8 @@ export const writings = [
         id: 2,
         title: "The Power of Open Source",
         excerpt: "Open source isn't just about free software. It's about collaboration, transparency, and building technology that serves everyone.",
+        category: "Open Source",
+        tags: ["Collaboration", "Software", "Community"],
         date: "December 2023",
         readTime: "4 min read",
     },
@@ -228,8 +232,37 @@ export const writings = [
         id: 3,
         title: "Code as Activism",
         excerpt: "Every line of code we write is a choice. We can build systems that empower people or systems that exploit them. The choice is ours.",
+        category: "Activism",
+        tags: ["Ethics", "Society", "Code"],
         date: "November 2023",
         readTime: "6 min read",
+    },
+];
+
+export const creatorProjects = [
+    {
+        title: "Terminal Echoes",
+        description: "A digital audio experience exploring the sounds of hardware and obsolete computing machines.",
+        type: "Sound Design",
+        icon: "Mic",
+    },
+    {
+        title: "Coded Verses",
+        description: "An experimental poetry collection generated through recursive algorithms and pattern recognition.",
+        type: "Generative Art",
+        icon: "Code2",
+    },
+    {
+        title: "The Clean Grid",
+        description: "A minimalist photography series capturing the intersection of brutalist architecture and digital interfaces.",
+        type: "Visual Storytelling",
+        icon: "Camera",
+    },
+    {
+        title: "Logic Flows",
+        description: "High-definition video essays documenting the history of logic gates and binary systems.",
+        type: "Motion Design",
+        icon: "Play",
     },
 ];
 

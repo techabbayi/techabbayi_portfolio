@@ -3,9 +3,9 @@
 import Header from '@/components/Header';
 import HeroDesigner from '@/components/HeroDesigner';
 import AboutDesigner from '@/components/AboutDesigner';
+import SkillsDesigner from '@/components/SkillsDesigner';
 import ProjectsDesigner from '@/components/ProjectsDesigner';
-import WritingDesigner from '@/components/WritingDesigner';
-import CreatorDesigner from '@/components/CreatorDesigner';
+import CertificatesDesigner from '@/components/CertificatesDesigner';
 import ContactDesigner from '@/components/ContactDesigner';
 import Footer from '@/components/Footer';
 
@@ -16,9 +16,9 @@ export default function DesignerPage() {
             <main>
                 <HeroDesigner />
                 <AboutDesigner />
+                <SkillsDesigner />
                 <ProjectsDesigner />
-                <WritingDesigner />
-                <CreatorDesigner />
+                <CertificatesDesigner />
                 <ContactDesigner />
             </main>
             <Footer />
