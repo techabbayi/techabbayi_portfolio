@@ -1,8 +1,8 @@
 'use client';
 
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { personalInfo, designerInfo, projects, socialLinks } from '@/lib/data';
-import { Terminal, Shield, Cpu, Zap, Globe, Github, Linkedin, Twitter, Mail, ArrowRight, ExternalLink, Send, Sparkles, Box, LayoutGroup, Atom } from 'lucide-react';
+import { Terminal, Shield, Cpu, Zap, Globe, Github, Linkedin, Twitter, Mail, ArrowRight, ExternalLink, Send, Sparkles, Box, Atom } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
 // Advanced Theme: "Hyper-Liquid 3D"
