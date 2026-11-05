@@ -24,7 +24,7 @@ export default function AboutHacker() {
                         <Terminal size={14} />
                         <span>FILE: /mnt/usr/lokeswara/biography.sys</span>
                     </div>
-                    <h2 className="text-4xl md:text-6xl font-black text-[var(--text-primary)] uppercase tracking-tighter">
+                    <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-[var(--text-primary)] uppercase tracking-tighter">
                         System Manifest
                     </h2>
                 </motion.div>
@@ -85,7 +85,7 @@ export default function AboutHacker() {
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
-                            className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] p-8 rounded-sm relative overflow-hidden group"
+                            className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] p-4 sm:p-8 rounded-sm relative overflow-hidden group"
                         >
                             {/* Scanline Overlay */}
                             <div className="absolute inset-0 bg-scanlines opacity-10 pointer-events-none transition-opacity group-hover:opacity-20" />

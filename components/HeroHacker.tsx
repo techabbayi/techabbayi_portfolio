@@ -71,7 +71,7 @@ export default function HeroHacker() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, delay: 0.2 }}
-                            className="text-5xl md:text-7xl font-bold mb-6 text-[var(--text-primary)]"
+                            className="text-3xl sm:text-5xl md:text-7xl font-bold mb-6 text-[var(--text-primary)] break-words tracking-tight"
                             style={{ fontFamily: 'var(--font-sans)' }}
                         >
                             {personalInfo.name}
@@ -174,14 +174,14 @@ export default function HeroHacker() {
                     </div>
 
                     {/* Right: Profile Image & Side Scrolling Metadata - Adjusted spacing */}
-                    <div className="relative flex items-center justify-start lg:-ml-12 gap-16">
+                    <div className="relative flex items-center justify-center lg:justify-start lg:-ml-12 gap-8 xl:gap-16 w-full">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
-                            className="relative group z-10"
+                            className="relative group z-10 w-full max-w-[320px] md:max-w-[400px]"
                         >
-                            <div className="w-[320px] md:w-[400px]">
+                            <div className="w-full">
                                 {/* Identification Meta */}
                                 <div className="text-[10px] font-mono text-[var(--text-tertiary)] flex items-center gap-2 mb-2">
                                     <Hash size={10} className="text-[var(--accent-primary)]" />

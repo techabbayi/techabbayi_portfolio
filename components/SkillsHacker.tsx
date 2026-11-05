@@ -95,8 +95,8 @@ export default function SkillsHacker() {
                         </div>
                     </div>
 
-                    <div className="p-8 md:p-12">
-                        <div className="grid md:grid-cols-3 gap-16 md:gap-8">
+                    <div className="p-4 sm:p-8 md:p-12">
+                        <div className="grid md:grid-cols-3 gap-12 md:gap-8">
                             {skillCategories.map((category, categoryIndex) => (
                                 <motion.div
                                     key={category.title}
@@ -106,7 +106,7 @@ export default function SkillsHacker() {
                                     transition={{ duration: 0.4, delay: categoryIndex * 0.1 }}
                                 >
                                     {/* Category Title - Large margin to prevent tooltip overlap */}
-                                    <div className="flex items-center gap-3 mb-14">
+                                    <div className="flex items-center gap-3 mb-8 sm:mb-14">
                                         <div className="w-1 h-4 bg-[var(--accent-primary)]" />
                                         <h3 className="text-sm font-bold text-[var(--text-secondary)] uppercase tracking-[0.2em] font-mono">
                                             {category.title}
@@ -114,7 +114,7 @@ export default function SkillsHacker() {
                                     </div>
 
                                     {/* Skills Grid */}
-                                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-3 gap-x-6 gap-y-12">
+                                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-3 gap-x-3 sm:gap-x-6 gap-y-8 sm:gap-y-12">
                                         {category.items.map((skill: any, index: number) => {
                                             const name = typeof skill === 'string' ? skill : skill.name;
                                             const description = typeof skill === 'string' ? '' : skill.description;

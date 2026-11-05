@@ -51,7 +51,7 @@ export default function SkillsDesigner() {
     ];
 
     return (
-        <section id="skills" className="relative py-32 px-6 overflow-hidden bg-[#ffeccc] theme-designer">
+        <section id="skills" className="relative py-24 sm:py-32 px-6 overflow-hidden bg-[#ffeccc] theme-designer">
             {/* Background Texture - Refined Grid */}
             <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
                 <div className="h-full w-full"
@@ -64,17 +64,17 @@ export default function SkillsDesigner() {
 
             <div className="container mx-auto max-w-7xl relative z-10">
                 {/* Header Section - Sharp Typography */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-16 mb-24">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 sm:gap-16 mb-16 sm:mb-24">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         className="max-w-4xl"
                     >
-                        <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#5e1010] mb-8 block">Domain Matrix</span>
-                        <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-[#2d0808] tracking-tighter leading-[0.9]" style={{ fontFamily: 'var(--font-serif)' }}>
+                        <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#5e1010] mb-6 sm:mb-8 block">Domain Matrix</span>
+                        <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-[#2d0808] tracking-tighter leading-[0.9] break-words" style={{ fontFamily: 'var(--font-serif)' }}>
                             Skillset <br />
-                            <span className="flex items-center gap-6">
+                            <span className="flex items-center gap-4 sm:gap-6">
                                 <span className="text-[#a67c52] italic font-serif">&</span>
                                 <span className="relative">
                                     Craft
@@ -93,14 +93,15 @@ export default function SkillsDesigner() {
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
-                        className="flex gap-2 p-1.5 bg-[#fff5e6] rounded-[1.5rem] border border-[#f5d9b3] shadow-sm"
+                        className="flex flex-wrap gap-2 p-1.5 bg-[#fff5e6] rounded-2xl border border-[#f5d9b3] shadow-sm"
                     >
                         {categories.map((cat, i) => (
                             <button
                                 key={i}
+                                type="button"
                                 onClick={() => setActiveTab(i)}
                                 className={`
-                                    px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-[0.15em] transition-all duration-500
+                                    px-3.5 sm:px-6 py-2.5 sm:py-3 min-h-[44px] flex items-center justify-center rounded-xl text-[10px] font-black uppercase tracking-[0.15em] transition-all duration-300 cursor-pointer
                                     ${activeTab === i
                                         ? 'bg-white text-[#5e1010] shadow-md shadow-[#5e1010]/5'
                                         : 'text-[#a67c52] hover:text-[#5e1010] hover:bg-white/50'
@@ -119,7 +120,7 @@ export default function SkillsDesigner() {
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6 }}
-                    className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-5"
+                    className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-4 sm:gap-5"
                 >
                     {categories[activeTab].data.map((skill: any, i) => {
                         const name = typeof skill === 'string' ? skill : skill.name;
@@ -134,9 +135,9 @@ export default function SkillsDesigner() {
                                 whileHover={{ y: -5 }}
                                 className="group relative"
                             >
-                                <div className="p-6 rounded-[2rem] bg-white border border-[#f5d9b3] hover:border-[#5e1010] hover:shadow-[0_20px_40px_-10px_rgba(94,16,16,0.1)] transition-all duration-500 flex flex-col items-center justify-center gap-5 h-full min-h-[180px]">
+                                <div className="p-4 sm:p-6 rounded-2xl sm:rounded-[2rem] bg-white border border-[#f5d9b3] hover:border-[#5e1010] hover:shadow-[0_20px_40px_-10px_rgba(94,16,16,0.1)] transition-all duration-500 flex flex-col items-center justify-center gap-4 sm:gap-5 h-full min-h-[160px] sm:min-h-[180px]">
                                     {/* Icon Container */}
-                                    <div className="w-14 h-14 rounded-2xl bg-[#fff5e6] flex items-center justify-center p-3.5 group-hover:bg-[#5e1010]/5 transition-colors duration-500">
+                                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#fff5e6] flex items-center justify-center p-3 group-hover:bg-[#5e1010]/5 transition-colors duration-500">
                                         {skillImg ? (
                                             <Image
                                                 src={skillImg}
@@ -144,14 +145,14 @@ export default function SkillsDesigner() {
                                                 className="w-full h-full object-contain transition-all duration-700 group-hover:scale-110"
                                             />
                                         ) : (
-                                            <Zap size={24} className="text-[#a67c52] group-hover:text-[#5e1010] transition-colors" />
+                                            <Zap size={22} className="text-[#a67c52] group-hover:text-[#5e1010] transition-colors" />
                                         )}
                                     </div>
 
                                     {/* Text Info */}
-                                    <div className="text-center space-y-1.5 overflow-hidden">
+                                    <div className="text-center space-y-1.5 overflow-hidden w-full">
                                         <motion.p
-                                            className="text-[13px] font-black uppercase tracking-[0.05em] text-[#2d0808] transition-all duration-500 group-hover:text-[#5e1010]"
+                                            className="text-[12px] sm:text-[13px] font-black uppercase tracking-[0.05em] text-[#2d0808] transition-all duration-500 group-hover:text-[#5e1010] truncate"
                                         >
                                             {name}
                                         </motion.p>

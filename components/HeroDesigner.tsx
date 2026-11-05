@@ -65,13 +65,12 @@ export default function HeroDesigner() {
                     {/* ━━━━━━━━━━━━━━━━━━━ THE MONUMENTAL LOGOTYPE ━━━━━━━━━━━━━━━━━━━ */}
                     <motion.div
                         style={{ y: mainTitleY }}
-                        className="flex flex-col items-center relative z-10 will-change-transform"
+                        className="flex flex-col items-center relative z-10 will-change-transform w-full"
                     >
                         {/* 
-                            FIX: Horizontal padding (px-20) and vertical space (pb-12) to prevent italic clipping.
-                            NEW FONTS: Syne for first name, Cormorant Garamond for second name.
+                            FIX: Fluid horizontal padding (px-4 sm:px-12 md:px-20) to prevent italic clipping and small-screen overflow.
                         */}
-                        <h1 className="text-[10vw] md:text-[11.5rem] tracking-tighter text-center leading-[0.8] px-20">
+                        <h1 className="text-[11vw] md:text-[11.5rem] tracking-tighter text-center leading-[0.85] px-4 sm:px-12 md:px-20 break-words">
                             <motion.span
                                 initial={{ opacity: 0, x: -40 }}
                                 animate={{ opacity: 1, x: 0 }}
@@ -85,7 +84,7 @@ export default function HeroDesigner() {
                                 initial={{ opacity: 0, x: 40 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                                className="block italic mt-2 py-4 px-10"
+                                className="block italic mt-2 py-4 px-2 sm:px-6 md:px-10"
                                 style={{
                                     fontFamily: '"Cormorant Garamond", serif',
                                     fontWeight: 600,
@@ -93,7 +92,7 @@ export default function HeroDesigner() {
                                     backgroundImage: 'linear-gradient(to right, #5e1010, #a67c52)',
                                     WebkitBackgroundClip: 'text',
                                     WebkitTextFillColor: 'transparent',
-                                    paddingRight: '0.15em' // Crucial fix for 'a' cutting
+                                    paddingRight: '0.15em'
                                 }}
                             >
                                 Muthumula
@@ -107,9 +106,9 @@ export default function HeroDesigner() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.6 }}
-                        className="mt-12 flex flex-col items-center gap-16 will-change-transform"
+                        className="mt-12 flex flex-col items-center gap-16 will-change-transform px-4"
                     >
-                        <p className="text-2xl md:text-4xl font-light text-[#8b2020] leading-[1.3] text-center max-w-2xl italic opacity-90"
+                        <p className="text-xl sm:text-2xl md:text-4xl font-light text-[#8b2020] leading-[1.3] text-center max-w-2xl italic opacity-90"
                             style={{ fontFamily: '"Cormorant Garamond", serif' }}>
                             {personalInfo.tagline}
                         </p>
@@ -134,8 +133,6 @@ export default function HeroDesigner() {
                     techabbayi — the creator
                 </span>
             </div>
-
-            {/* Removed archive text as requested */}
         </section>
     );
 }

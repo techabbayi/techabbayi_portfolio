@@ -3,16 +3,20 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import dbConnect from '@/lib/mongodb';
 import { Project } from '@/lib/models';
+import { projects as fallbackProjects } from '@/lib/data';
 
 // GET - Get all projects
 export async function GET() {
     try {
         await dbConnect();
         const projects = await Project.find().sort({ projectId: 1 });
-        return NextResponse.json(projects);
+        if (projects.length > 0) {
+            return NextResponse.json(projects);
+        }
+        return NextResponse.json(fallbackProjects);
     } catch (error) {
-        console.error('Error fetching projects:', error);
-        return NextResponse.json({ error: 'Failed to fetch projects' }, { status: 500 });
+        console.error('Error fetching projects, serving fallback:', error);
+        return NextResponse.json(fallbackProjects);
     }
 }
 

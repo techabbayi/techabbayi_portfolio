@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
-import { Terminal, Palette, Menu, X } from 'lucide-react';
+import { Terminal, Menu, X } from 'lucide-react';
 import { personalInfo } from '@/lib/data';
 import { useState, useEffect } from 'react';
 
@@ -10,6 +10,7 @@ export default function Header() {
     const pathname = usePathname();
     const router = useRouter();
     const isDesignerMode = pathname === '/designer';
+    const isProjectsPage = pathname === '/projects';
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -21,19 +22,33 @@ export default function Header() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const toggleTheme = () => {
-        if (isDesignerMode) {
-            router.push('/');
-        } else {
-            router.push('/designer');
-        }
-    };
-
     const nameSlug = personalInfo.name.toLowerCase().split(' ').slice(0, 2).join('.');
 
-    const hackerLinks = ['about', 'skills', 'projects', 'certificates', 'contact'];
-    const designerLinks = ['about', 'work', 'contact'];
+    const hackerLinks = [
+        { name: 'about', label: 'about' },
+        { name: 'skills', label: 'skills' },
+        { name: 'projects', label: 'projects' },
+        { name: 'experience', label: 'experience' },
+        { name: 'certificates', label: 'certificates' },
+        { name: 'contact', label: 'contact' },
+    ];
+
+    const designerLinks = [
+        { name: 'about', label: 'about' },
+        { name: 'work', label: 'work' },
+        { name: 'experience', label: 'experience' },
+        { name: 'certificates', label: 'certificates' },
+        { name: 'contact', label: 'contact' },
+    ];
+
     const links = isDesignerMode ? designerLinks : hackerLinks;
+
+    const getLinkHref = (name: string) => {
+        if (isProjectsPage) {
+            return isDesignerMode ? `/designer#${name}` : `/#${name}`;
+        }
+        return `#${name}`;
+    };
 
     return (
         <motion.header
@@ -43,8 +58,8 @@ export default function Header() {
             className={`
                 fixed top-0 left-0 right-0 z-50 transition-all duration-300
                 ${isScrolled
-                    ? 'py-3 bg-[var(--bg-primary)]/80 backdrop-blur-lg border-b border-[var(--border-primary)] shadow-sm'
-                    : 'py-6 bg-transparent'
+                    ? 'py-3 bg-[var(--bg-primary)]/85 backdrop-blur-lg border-b border-[var(--border-primary)] shadow-sm'
+                    : 'py-5 bg-transparent'
                 }
             `}
         >
@@ -56,7 +71,7 @@ export default function Header() {
                     className="cursor-pointer group flex items-center gap-2"
                 >
                     {!isDesignerMode && (
-                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-[var(--accent-primary)] text-black">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-[var(--accent-primary)] text-black font-bold">
                             <Terminal size={20} />
                         </div>
                     )}
@@ -69,57 +84,29 @@ export default function Header() {
                 </motion.div>
 
                 {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center gap-10">
-                    <div className="flex items-center gap-8">
-                        {links.map((item) => (
-                            <a
-                                key={item}
-                                href={`#${item}`}
-                                className={`
-                                    text-sm font-semibold transition-all duration-200 uppercase tracking-widest
-                                    ${isDesignerMode
-                                        ? 'text-[#a67c52] hover:text-[#5e1010] hover:scale-110'
-                                        : 'text-[var(--text-secondary)] hover:text-[var(--accent-primary)] font-mono'
-                                    }
-                                `}
-                            >
-                                {item}
-                            </a>
-                        ))}
-                    </div>
-
-                    <div className={`h-6 w-px ${isScrolled ? 'bg-[#f5d9b3]' : 'bg-gray-200/20'} mx-2`} />
-
-                    {/* Mode Toggle Button */}
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={toggleTheme}
-                        className={`
-                            group flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest transition-all duration-300
-                            ${isDesignerMode
-                                ? 'bg-[#fff5e6] text-[#5e1010] hover:bg-[#5e1010] hover:text-[#ffeccc] border border-[#f5d9b3]'
-                                : 'bg-[var(--bg-tertiary)] text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 hover:bg-[var(--accent-primary)] hover:text-black font-mono shadow-[0_0_15px_rgba(var(--accent-primary-rgb),0.2)]'
-                            }
-                        `}
-                    >
-                        {isDesignerMode ? (
-                            <>
-                                <Terminal size={14} className="group-hover:rotate-12 transition-transform" />
-                                <span>Switch to Hacker</span>
-                            </>
-                        ) : (
-                            <>
-                                <Palette size={14} className="group-hover:rotate-12 transition-transform" />
-                                <span>Switch to Designer</span>
-                            </>
-                        )}
-                    </motion.button>
+                <div className="hidden lg:flex items-center gap-6">
+                    {links.map((item) => (
+                        <a
+                            key={item.name}
+                            href={getLinkHref(item.name)}
+                            className={`
+                                text-xs font-semibold transition-all duration-200 uppercase tracking-widest
+                                ${isDesignerMode
+                                    ? 'text-[#a67c52] hover:text-[#5e1010] hover:scale-105'
+                                    : 'text-[var(--text-secondary)] hover:text-[var(--accent-primary)] font-mono'
+                                }
+                            `}
+                        >
+                            {item.label}
+                        </a>
+                    ))}
                 </div>
 
                 {/* Mobile Menu Toggle */}
                 <button
-                    className={`md:hidden p-2 ${isDesignerMode ? 'text-[#5e1010]' : 'text-[var(--text-primary)]'}`}
+                    type="button"
+                    aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+                    className={`lg:hidden min-w-[48px] min-h-[48px] p-2 flex items-center justify-center rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)] ${isDesignerMode ? 'text-[#5e1010]' : 'text-[var(--text-primary)]'}`}
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                 >
                     {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -130,25 +117,19 @@ export default function Header() {
             <motion.div
                 initial={false}
                 animate={isMenuOpen ? { x: 0, opacity: 1 } : { x: '100%', opacity: 0 }}
-                className={`fixed inset-0 z-40 pt-24 px-6 md:hidden ${isDesignerMode ? 'bg-[#ffeccc]' : 'bg-[var(--bg-primary)]'}`}
+                className={`fixed inset-0 z-40 pt-24 px-6 lg:hidden overflow-y-auto ${isDesignerMode ? 'bg-[#ffeccc]' : 'bg-[#050505]'}`}
             >
-                <div className="flex flex-col gap-6 items-center italic">
+                <div className="flex flex-col gap-4 items-center justify-center min-h-[70vh]">
                     {links.map((item) => (
                         <a
-                            key={item}
-                            href={`#${item}`}
+                            key={item.name}
+                            href={getLinkHref(item.name)}
                             onClick={() => setIsMenuOpen(false)}
-                            className={`text-2xl font-bold ${isDesignerMode ? 'text-[#5e1010]' : 'text-[var(--accent-primary)] font-mono'}`}
+                            className={`min-h-[48px] px-6 py-2.5 flex items-center justify-center text-xl font-bold uppercase tracking-wider rounded-lg transition-colors ${isDesignerMode ? 'text-[#5e1010] hover:bg-[#5e1010]/10' : 'text-[var(--accent-primary)] hover:bg-[var(--accent-primary)]/10 font-mono'}`}
                         >
-                            {item}
+                            {item.label}
                         </a>
                     ))}
-                    <button
-                        onClick={() => { toggleTheme(); setIsMenuOpen(false); }}
-                        className={`mt-8 px-8 py-4 rounded-full font-bold shadow-2xl transition-all ${isDesignerMode ? 'bg-[#5e1010] text-[#ffeccc]' : 'bg-blue-600 text-white'}`}
-                    >
-                        Switch Mode
-                    </button>
                 </div>
             </motion.div>
         </motion.header>

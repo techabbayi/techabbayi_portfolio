@@ -5,6 +5,7 @@ import HeroDesigner from '@/components/HeroDesigner';
 import AboutDesigner from '@/components/AboutDesigner';
 import SkillsDesigner from '@/components/SkillsDesigner';
 import ProjectsDesigner from '@/components/ProjectsDesigner';
+import AchievementsExperienceDesigner from '@/components/AchievementsExperienceDesigner';
 import CertificatesDesigner from '@/components/CertificatesDesigner';
 import ContactDesigner from '@/components/ContactDesigner';
 import Footer from '@/components/Footer';
@@ -18,6 +19,7 @@ export default function DesignerPage() {
                 <AboutDesigner />
                 <SkillsDesigner />
                 <ProjectsDesigner />
+                <AchievementsExperienceDesigner />
                 <CertificatesDesigner />
                 <ContactDesigner />
             </main>

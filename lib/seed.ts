@@ -7,6 +7,7 @@ import {
     SocialLink,
     Skills,
     Project,
+    Experience,
     Writing,
     Certificate,
     About,
@@ -18,6 +19,7 @@ import {
     skills,
     projects,
     designProjects,
+    achievementsAndExperiences,
     writings,
     certificates,
     about,
@@ -53,19 +55,15 @@ export async function seedDatabase() {
             console.log('✅ Designer mode setting created (disabled)');
         }
 
-        // 3. Seed Personal Info
-        const existingPersonalInfo = await PersonalInfo.findOne();
-        if (!existingPersonalInfo) {
-            await PersonalInfo.create(personalInfo);
-            console.log('✅ Personal info seeded');
-        }
+        // 3. Seed / Sync Personal Info
+        await PersonalInfo.deleteMany({});
+        await PersonalInfo.create(personalInfo);
+        console.log('✅ Personal info seeded / synced');
 
-        // 4. Seed Designer Info
-        const existingDesignerInfo = await DesignerInfo.findOne();
-        if (!existingDesignerInfo) {
-            await DesignerInfo.create(designerInfo);
-            console.log('✅ Designer info seeded');
-        }
+        // 4. Seed / Sync Designer Info
+        await DesignerInfo.deleteMany({});
+        await DesignerInfo.create(designerInfo);
+        console.log('✅ Designer info seeded / synced');
 
         // 5. Seed Social Links
         const existingSocialLinks = await SocialLink.countDocuments();
@@ -78,38 +76,60 @@ export async function seedDatabase() {
             console.log(`✅ ${socialLinks.length} social links seeded`);
         }
 
-        // 6. Seed Skills
-        const existingSkills = await Skills.findOne();
-        if (!existingSkills) {
-            await Skills.create(skills);
-            console.log('✅ Skills seeded');
-        }
+        // 6. Seed / Sync Skills
+        await Skills.deleteMany({});
+        await Skills.create(skills);
+        console.log('✅ Skills seeded / synced');
 
-        // 7. Seed Projects
-        const existingProjects = await Project.countDocuments();
-        if (existingProjects === 0) {
-            const projectsToSeed = projects.map((project, index) => {
-                const designProject = designProjects.find(dp => dp.id === project.id);
-                return {
+        // 7. Seed / Sync Projects (Upsert to ensure all 8 projects are updated)
+        for (const project of projects) {
+            const designProject = designProjects.find(dp => dp.id === project.id);
+            await Project.findOneAndUpdate(
+                { projectId: project.id },
+                {
                     projectId: project.id,
                     title: project.title,
                     category: project.category,
+                    tagline: project.tagline || '',
                     description: project.description,
+                    fullDescription: project.fullDescription || project.description,
                     techStack: project.techStack,
                     github: project.github,
                     live: project.live,
                     featured: project.featured,
+                    highlights: project.highlights || [],
+                    context: project.context || '',
                     intent: designProject?.intent || '',
                     process: designProject?.process || '',
                     outcome: designProject?.outcome || '',
-                    year: designProject?.year || new Date().getFullYear().toString(),
-                };
-            });
-            await Project.insertMany(projectsToSeed);
-            console.log(`✅ ${projects.length} projects seeded`);
+                    year: designProject?.year || project.year || new Date().getFullYear().toString(),
+                    updatedAt: new Date(),
+                },
+                { upsert: true, new: true }
+            );
         }
+        console.log(`✅ ${projects.length} projects seeded / updated`);
 
-        // 8. Seed Writings
+        // 8. Seed / Sync Achievements & Experiences (Clean slate)
+        await Experience.deleteMany({});
+        const experiencesToSeed = achievementsAndExperiences.map(item => ({
+            experienceId: item.id,
+            title: item.title,
+            category: item.category,
+            role: item.role,
+            period: item.period,
+            organization: item.organization,
+            badge: item.badge,
+            summary: item.summary,
+            highlights: item.highlights,
+            techStack: item.techStack,
+            link: item.link || '',
+            icon: item.icon,
+        }));
+        await Experience.insertMany(experiencesToSeed);
+        console.log(`✅ ${achievementsAndExperiences.length} achievements & experiences seeded`);
+
+        // 9. Seed Writings
         const existingWritings = await Writing.countDocuments();
         if (existingWritings === 0) {
             const writingsToSeed = writings.map(writing => ({
@@ -123,22 +143,22 @@ export async function seedDatabase() {
             console.log(`✅ ${writings.length} writings seeded`);
         }
 
-        // 9. Seed Certificates
-        const existingCertificates = await Certificate.countDocuments();
-        if (existingCertificates === 0) {
-            const certificatesToSeed = certificates.map(cert => ({
-                certificateId: cert.id,
-                title: cert.title,
-                issuer: cert.issuer,
-                date: cert.date,
-                credentialId: cert.credentialId,
-                link: cert.link,
-            }));
-            await Certificate.insertMany(certificatesToSeed);
-            console.log(`✅ ${certificates.length} certificates seeded`);
-        }
+        // 10. Seed / Sync Certificates (Clean slate to include all new certificates)
+        await Certificate.deleteMany({});
+        const certificatesToSeed = certificates.map(cert => ({
+            certificateId: cert.id,
+            title: cert.title,
+            issuer: cert.issuer,
+            date: cert.date,
+            credentialId: cert.credentialId,
+            link: cert.link,
+            category: cert.category || '',
+            description: cert.description || '',
+        }));
+        await Certificate.insertMany(certificatesToSeed);
+        console.log(`✅ ${certificates.length} certificates seeded`);
 
-        // 10. Seed About
+        // 11. Seed About
         const existingAbout = await About.findOne();
         if (!existingAbout) {
             await About.create(about);

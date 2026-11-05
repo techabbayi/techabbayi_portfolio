@@ -3,11 +3,13 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter, Mail, Instagram, Shield, Terminal, Globe, ArrowUp } from 'lucide-react';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import { socialLinks, personalInfo } from '@/lib/data';
 
 export default function Footer() {
     const pathname = usePathname();
     const isDesignerMode = pathname === '/designer';
+    const isProjectsPage = pathname === '/projects';
 
     const iconMap: Record<string, any> = {
         Github,
@@ -21,9 +23,16 @@ export default function Footer() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
+    const getLinkHref = (link: string) => {
+        if (isProjectsPage) {
+            return isDesignerMode ? `/designer#${link}` : `/#${link}`;
+        }
+        return `#${link}`;
+    };
+
     if (isDesignerMode) {
         return (
-            <footer className="py-24 px-6 bg-[#fff5e6] border-t border-[#f5d9b3] mt-0">
+            <footer className="py-24 px-6 bg-[#fff5e6] border-t border-[#f5d9b3] mt-0 theme-designer">
                 <div className="container mx-auto max-w-7xl">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
 
@@ -35,11 +44,18 @@ export default function Footer() {
                             <p className="text-[#8b2020] leading-relaxed">
                                 {personalInfo.tagline}
                             </p>
-                            <div className="flex gap-4">
+                            <div className="flex flex-wrap gap-4">
                                 {socialLinks.map((social) => {
                                     const Icon = iconMap[social.icon] || Mail;
                                     return (
-                                        <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer" className="text-[#a67c52] hover:text-[#5e1010] transition-colors">
+                                        <a
+                                            key={social.name}
+                                            href={social.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label={social.name}
+                                            className="min-w-[44px] min-h-[44px] flex items-center justify-center text-[#a67c52] hover:text-[#5e1010] transition-colors rounded-lg"
+                                        >
                                             <Icon size={20} />
                                         </a>
                                     );
@@ -51,11 +67,16 @@ export default function Footer() {
                         <div>
                             <h4 className="text-sm font-bold text-[#2d0808] uppercase tracking-widest mb-6">Explore</h4>
                             <ul className="space-y-4">
-                                {['about', 'work', 'contact'].map((link) => (
+                                {['about', 'work', 'experience', 'certificates', 'contact'].map((link) => (
                                     <li key={link}>
-                                        <a href={`#${link}`} className="text-[#a67c52] hover:text-[#5e1010] transition-colors capitalize font-medium">{link}</a>
+                                        <a href={getLinkHref(link)} className="text-[#a67c52] hover:text-[#5e1010] transition-colors capitalize font-medium">{link}</a>
                                     </li>
                                 ))}
+                                <li>
+                                    <Link href="/projects" className="text-[#5e1010] font-bold hover:underline">
+                                        All Projects Archive ({personalInfo.name ? 8 : 0})
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
 
@@ -65,7 +86,7 @@ export default function Footer() {
                             <ul className="space-y-4">
                                 <li className="flex flex-col">
                                     <span className="text-xs text-[#d4a574] uppercase tracking-widest mb-1">Email Me</span>
-                                    <span className="text-[#2d0808] font-bold">{personalInfo.email}</span>
+                                    <a href={`mailto:${personalInfo.email}`} className="text-[#2d0808] font-bold hover:underline">{personalInfo.email}</a>
                                 </li>
                                 <li className="flex flex-col">
                                     <span className="text-xs text-[#d4a574] uppercase tracking-widest mb-1">Location</span>
@@ -83,7 +104,7 @@ export default function Footer() {
                             </div>
                             <button
                                 onClick={scrollToTop}
-                                className="mt-8 flex items-center gap-2 text-[#a67c52] hover:text-[#5e1010] transition-colors group"
+                                className="mt-8 flex items-center gap-2 text-[#a67c52] hover:text-[#5e1010] transition-colors group cursor-pointer"
                             >
                                 <span className="text-xs font-bold uppercase tracking-widest">Back to top</span>
                                 <ArrowUp size={16} className="group-hover:-translate-y-1 transition-transform" />
@@ -94,8 +115,8 @@ export default function Footer() {
                     <div className="pt-8 border-t border-[#f5d9b3] flex flex-col md:flex-row justify-between items-center gap-4">
                         <p className="text-sm text-[#a67c52]">© {new Date().getFullYear()} {personalInfo.name}. Built with Precision & Soul.</p>
                         <div className="flex gap-8">
-                            <a href="#" className="text-xs text-[#a67c52] hover:text-[#2d0808] transition-colors uppercase font-bold tracking-widest">Privacy</a>
-                            <a href="#" className="text-xs text-[#a67c52] hover:text-[#2d0808] transition-colors uppercase font-bold tracking-widest">Legal</a>
+                            <a href="#about" className="text-xs text-[#a67c52] hover:text-[#2d0808] transition-colors uppercase font-bold tracking-widest">Identity</a>
+                            <a href="#contact" className="text-xs text-[#a67c52] hover:text-[#2d0808] transition-colors uppercase font-bold tracking-widest">Connect</a>
                         </div>
                     </div>
                 </div>
@@ -132,17 +153,26 @@ export default function Footer() {
                             <span className="font-mono text-[10px] uppercase tracking-widest">Navigation_Links</span>
                         </div>
                         <ul className="space-y-2 font-mono text-xs">
-                            {['about', 'skills', 'projects', 'certificates', 'contact'].map((link) => (
+                            {['about', 'skills', 'projects', 'experience', 'certificates', 'contact'].map((link) => (
                                 <li key={link} className="flex items-center gap-2 group">
                                     <span className="text-[var(--accent-primary)] opacity-40 group-hover:opacity-100 transition-opacity">└─</span>
                                     <a
-                                        href={`#${link}`}
+                                        href={getLinkHref(link)}
                                         className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-all uppercase tracking-tighter"
                                     >
                                         {link}.sys
                                     </a>
                                 </li>
                             ))}
+                            <li className="flex items-center gap-2 group pt-1">
+                                <span className="text-[var(--accent-primary)]">▸</span>
+                                <Link
+                                    href="/projects"
+                                    className="text-[var(--accent-primary)] hover:underline uppercase tracking-tighter font-bold"
+                                >
+                                    all_projects_archive.pkg
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 
@@ -152,9 +182,9 @@ export default function Footer() {
                             <Shield size={16} />
                             <span className="font-mono text-[10px] uppercase tracking-widest">Connect_Endpoints</span>
                         </div>
-                        <div className="grid grid-cols-4 gap-2">
+                        <div className="flex flex-wrap gap-2.5">
                             {socialLinks.map((social) => {
-                                const Icon = iconMap[social.icon];
+                                const Icon = iconMap[social.icon] || Mail;
                                 return (
                                     <motion.a
                                         key={social.name}
@@ -162,10 +192,10 @@ export default function Footer() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         whileHover={{ y: -3, backgroundColor: 'var(--accent-primary)', color: '#000' }}
-                                        className="aspect-square rounded-sm border border-[var(--border-primary)] flex items-center justify-center text-[var(--accent-primary)] transition-all bg-[var(--bg-tertiary)]/20 shadow-lg shadow-black/50"
+                                        className="w-11 h-11 rounded-sm border border-[var(--border-primary)] flex items-center justify-center text-[var(--accent-primary)] transition-all bg-[var(--bg-tertiary)]/20 shadow-lg shadow-black/50"
                                         aria-label={social.name}
                                     >
-                                        <Icon size={16} />
+                                        <Icon size={18} />
                                     </motion.a>
                                 );
                             })}
@@ -176,13 +206,13 @@ export default function Footer() {
                 {/* Footer Bottom Strip */}
                 <div className="pt-10 mt-10 border-t border-[var(--border-primary)]">
                     <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                        <div className="text-[10px] font-mono text-[var(--text-tertiary)] flex items-center gap-6">
+                        <div className="text-[10px] font-mono text-[var(--text-tertiary)] flex flex-wrap items-center gap-4 sm:gap-6">
                             <p className="uppercase tracking-[0.2em]">
                                 © {new Date().getFullYear()} {personalInfo.name.toUpperCase()}
                             </p>
                             <span className="hidden md:block opacity-30">|</span>
                             <p className="uppercase tracking-widest">
-                                Build_Hash: <span className="text-[var(--accent-primary)]">8F2D1A9C</span>
+                                Moniker: <span className="text-[var(--accent-primary)]">techabbayi</span>
                             </p>
                         </div>
 

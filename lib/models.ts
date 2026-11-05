@@ -64,11 +64,15 @@ const ProjectSchema = new Schema({
     projectId: { type: Number, required: true, unique: true },
     title: { type: String, required: true },
     category: String,
+    tagline: String,
     description: String,
+    fullDescription: String,
     techStack: [String],
     github: String,
     live: String,
     featured: { type: Boolean, default: false },
+    highlights: [String],
+    context: String,
     // Designer-specific fields
     intent: String,
     process: String,
@@ -76,6 +80,23 @@ const ProjectSchema = new Schema({
     year: String,
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
+});
+
+// Experience & Achievements Schema
+const ExperienceSchema = new Schema({
+    experienceId: { type: Number, required: true, unique: true },
+    title: { type: String, required: true },
+    category: { type: String, enum: ['Experience', 'Achievement', 'Milestone'], default: 'Achievement' },
+    role: String,
+    period: String,
+    organization: String,
+    badge: String,
+    summary: String,
+    highlights: [String],
+    techStack: [String],
+    link: String,
+    icon: String,
+    createdAt: { type: Date, default: Date.now },
 });
 
 // Writings Schema
@@ -96,6 +117,8 @@ const CertificateSchema = new Schema({
     date: String,
     credentialId: String,
     link: String,
+    category: String,
+    description: String,
     createdAt: { type: Date, default: Date.now },
 });
 
@@ -114,6 +137,7 @@ export const DesignerInfo = models.DesignerInfo || model('DesignerInfo', Designe
 export const SocialLink = models.SocialLink || model('SocialLink', SocialLinkSchema);
 export const Skills = models.Skills || model('Skills', SkillsSchema);
 export const Project = models.Project || model('Project', ProjectSchema);
+export const Experience = models.Experience || model('Experience', ExperienceSchema);
 export const Writing = models.Writing || model('Writing', WritingSchema);
 export const Certificate = models.Certificate || model('Certificate', CertificateSchema);
 export const About = models.About || model('About', AboutSchema);

@@ -51,7 +51,7 @@ export default function ContactHacker() {
                         <Terminal size={20} className="text-[var(--accent-primary)] animate-pulse" />
                         <span className="terminal-line font-mono text-sm tracking-widest uppercase">system.exec("init_comm_link")</span>
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-black text-[var(--text-primary)] tracking-tighter mb-4 uppercase">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--text-primary)] tracking-tighter mb-4 uppercase">
                         Secure_Contact<span className="text-[var(--accent-primary)]">.node</span>
                     </h2>
                     <div className="h-1 w-20 bg-[var(--accent-primary)] mb-6"></div>
@@ -66,7 +66,7 @@ export default function ContactHacker() {
                         transition={{ duration: 0.5 }}
                         className="lg:col-span-5 space-y-8"
                     >
-                        <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-xl p-8 relative group">
+                        <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-xl p-4 sm:p-8 relative group">
                             <div className="absolute -inset-[1px] bg-gradient-to-br from-[var(--accent-primary)]/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                             <div className="relative">
@@ -150,7 +150,7 @@ export default function ContactHacker() {
                                 </div>
                             </div>
 
-                            <div className="p-8 md:p-12">
+                            <div className="p-4 sm:p-8 md:p-12">
                                 {isSubmitted ? (
                                     <motion.div
                                         initial={{ opacity: 0, scale: 0.95 }}
@@ -222,7 +222,7 @@ export default function ContactHacker() {
                                             type="submit"
                                             whileHover={{ scale: 1.01 }}
                                             whileTap={{ scale: 0.99 }}
-                                            className="w-full py-4 bg-[var(--accent-primary)] text-black font-mono text-xs font-black uppercase tracking-[4px] rounded-lg shadow-[0_0_20px_rgba(74,222,128,0.2)] hover:shadow-[0_0_30px_rgba(74,222,128,0.4)] transition-all flex items-center justify-center gap-3"
+                                            className="w-full min-h-[48px] py-4 bg-[var(--accent-primary)] text-black font-mono text-xs font-black uppercase tracking-[4px] rounded-lg shadow-[0_0_20px_rgba(74,222,128,0.2)] hover:shadow-[0_0_30px_rgba(74,222,128,0.4)] transition-all flex items-center justify-center gap-3 cursor-pointer"
                                         >
                                             <Send size={16} />
                                             Dispatch_Payload
@@ -245,11 +245,10 @@ export default function ContactHacker() {
                         <span>ENC: AES_256_GCM</span>
                     </div>
                     <div className="uppercase tracking-[0.2em]">
-                        Last Signal Check: {new Date().toLocaleDateString()} {new Date().toLocaleTimeString()}
+                        SECURE PROTOCOL // TLS 1.3
                     </div>
                 </div>
             </div>
         </section>
     );
 }
-

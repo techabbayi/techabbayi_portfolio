@@ -7,6 +7,7 @@ import HeroHacker from '@/components/HeroHacker';
 import AboutHacker from '@/components/AboutHacker';
 import SkillsHacker from '@/components/SkillsHacker';
 import ProjectsHacker from '@/components/ProjectsHacker';
+import AchievementsExperienceHacker from '@/components/AchievementsExperienceHacker';
 import CertificatesHacker from '@/components/CertificatesHacker';
 import ContactHacker from '@/components/ContactHacker';
 import Footer from '@/components/Footer';
@@ -18,20 +19,19 @@ export default function Home() {
     <>
       {!bootComplete && <BootSequence onComplete={() => setBootComplete(true)} />}
 
-      {bootComplete && (
-        <div className="min-h-screen">
-          <Header />
-          <main>
-            <HeroHacker />
-            <AboutHacker />
-            <SkillsHacker />
-            <ProjectsHacker />
-            <CertificatesHacker />
-            <ContactHacker />
-          </main>
-          <Footer />
-        </div>
-      )}
+      <div className="min-h-screen">
+        <Header />
+        <main>
+          <HeroHacker />
+          <AboutHacker />
+          <SkillsHacker />
+          <ProjectsHacker />
+          <AchievementsExperienceHacker />
+          <CertificatesHacker />
+          <ContactHacker />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }
